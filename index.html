@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>YC Learning Program - Sponsor Torah Learning</title>
- 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600;700&display=swap">
 <link rel="stylesheet" type="text/css" href="card.css">
@@ -1257,6 +1257,10 @@
         window.addEventListener('beforeunload', function() {
             cancelAnimationFrame(animationFrame);
         });
+        if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+    const candle = document.querySelector('.memorial-candle-container');
+    if (candle) candle.style.display = 'none';
+}
     </script>
 </body>
 </html>
