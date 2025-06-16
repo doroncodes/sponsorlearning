@@ -7,6 +7,7 @@
  
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600;700&display=swap">
+<link rel="stylesheet" type="text/css" href="card.css">
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
@@ -42,7 +43,420 @@
             background-color: #1a365d;
             color: white;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        
         }
+
+    /* Existing styles... */
+
+    /* Memorial Card Styles */
+    .memorial-card-container {
+        width: 100%;
+        max-width: 600px;
+        height: 350px;
+        perspective: 1500px;
+        margin: 30px auto;
+        position: relative;
+        touch-action: none;
+    }
+    
+    .memorial-card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        border-radius: 15px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        transition: transform 0.05s ease-out;
+        background-color: #000;
+        overflow: hidden;
+    }
+    
+    .memorial-card-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+        border-radius: 15px;
+        background: #000;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    
+    .memorial-card-shine {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 15px;
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0) 0%, 
+            rgba(255, 255, 255, 0.05) 40%, 
+            rgba(255, 255, 255, 0.1) 60%, 
+            rgba(255, 255, 255, 0) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        pointer-events: none;
+        z-index: 3;
+    }
+    
+    .memorial-card-border {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 2;
+    }
+    
+    .memorial-card-content {
+        position: relative;
+        z-index: 1;
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .memorial-card-header {
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    .memorial-card-title {
+        font-family: 'Merriweather', serif;
+        font-weight: 700;
+        font-size: 24px;
+        color: #fff;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        position: relative;
+    }
+    
+    .memorial-card-subtitle {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        color: #ccc;
+        margin-bottom: 5px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .memorial-candle-container {
+        width: 35%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    
+    .memorial-candle-wrapper {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .memorial-candle {
+        position: relative;
+        width: 40px;
+        height: 180px;
+        background: linear-gradient(to right, 
+            rgba(255, 253, 245, 0.9), 
+            rgba(255, 255, 255, 1), 
+            rgba(255, 253, 245, 0.9));
+        border-radius: 5px 5px 0 0;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        overflow: hidden;
+    }
+    
+    .memorial-candle::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, 
+            rgba(255, 255, 255, 0.1), 
+            rgba(255, 255, 255, 0.3), 
+            rgba(255, 255, 255, 0.1));
+        border-radius: 5px 5px 0 0;
+    }
+    
+    .memorial-candle::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        background: linear-gradient(to bottom, 
+            rgba(255, 253, 245, 0.9), 
+            rgba(255, 240, 220, 1));
+        border-radius: 0 0 5px 5px;
+    }
+    
+    .memorial-wax-drips {
+        position: absolute;
+        top: 10px;
+        left: -5px;
+        width: 50px;
+        height: 100%;
+        pointer-events: none;
+    }
+    
+    .memorial-wax-drip {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 50% 50% 0 50%;
+        transform: rotate(15deg);
+    }
+    
+    .memorial-wax-drip:nth-child(1) {
+        top: 20px;
+        left: 2px;
+        width: 12px;
+        height: 25px;
+    }
+    
+    .memorial-wax-drip:nth-child(2) {
+        top: 60px;
+        left: -2px;
+        width: 10px;
+        height: 30px;
+        transform: rotate(25deg);
+    }
+    
+    .memorial-wax-drip:nth-child(3) {
+        top: 100px;
+        left: 0px;
+        width: 15px;
+        height: 20px;
+        transform: rotate(10deg);
+    }
+    
+    .memorial-wax-drip:nth-child(4) {
+        top: 140px;
+        left: -3px;
+        width: 12px;
+        height: 28px;
+        transform: rotate(20deg);
+    }
+    
+    .memorial-wick {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px;
+        height: 15px;
+        background-color: #333;
+        border-radius: 2px;
+        z-index: 1;
+    }
+    
+    .memorial-flame {
+        position: absolute;
+        top: -35px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 35px;
+        background: radial-gradient(ellipse at center, 
+            rgba(255, 255, 255, 0.9) 0%, 
+            rgba(255, 204, 0, 0.9) 30%, 
+            rgba(255, 153, 0, 0.9) 60%, 
+            rgba(255, 102, 0, 0.7) 90%);
+        border-radius: 50% 50% 20% 20% / 40% 40% 60% 60%;
+        box-shadow: 0 0 20px rgba(255, 153, 0, 0.8),
+                    0 0 40px rgba(255, 102, 0, 0.6);
+        animation: memorial-flicker 3s infinite alternate;
+        z-index: 2;
+    }
+    
+    .memorial-glow {
+        position: absolute;
+        top: -45px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(circle, 
+            rgba(255, 204, 0, 0.4) 0%, 
+            rgba(255, 153, 0, 0.2) 40%, 
+            rgba(255, 102, 0, 0.1) 60%, 
+            rgba(0, 0, 0, 0) 80%);
+        border-radius: 50%;
+        animation: memorial-glow 3s infinite alternate;
+        z-index: 1;
+    }
+    
+    .memorial-dedication {
+        font-family: 'Merriweather', serif;
+        font-weight: 500;
+        font-size: 20px;
+        color: #fff;
+        margin-top: 20px;
+        line-height: 1.6;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .memorial-hebrew {
+        font-family: 'Times New Roman', serif;
+        font-size: 18px;
+        color: #e6c200;
+        margin-top: 10px;
+        direction: rtl;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    @keyframes memorial-flicker {
+        0%, 100% {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+        }
+        10% {
+            transform: translateX(-51%) scale(1.05);
+            opacity: 0.9;
+        }
+        20% {
+            transform: translateX(-49%) scale(0.95);
+            opacity: 1;
+        }
+        30% {
+            transform: translateX(-50%) scale(1.02);
+            opacity: 0.95;
+        }
+        50% {
+            transform: translateX(-51%) scale(0.98);
+            opacity: 1;
+        }
+        70% {
+            transform: translateX(-49%) scale(1.03);
+            opacity: 0.9;
+        }
+        80% {
+            transform: translateX(-50%) scale(0.97);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes memorial-glow {
+        0%, 100% {
+            transform: translateX(-50%) scale(1);
+            opacity: 0.5;
+        }
+        50% {
+            transform: translateX(-50%) scale(1.1);
+            opacity: 0.7;
+        }
+    }
+    
+    /* Holographic effect */
+    .memorial-holographic-effect {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0) 0%, 
+            rgba(255, 255, 255, 0.05) 25%, 
+            rgba(255, 255, 255, 0.1) 50%, 
+            rgba(255, 255, 255, 0.05) 75%, 
+            rgba(255, 255, 255, 0) 100%);
+        mix-blend-mode: overlay;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+        z-index: 4;
+        border-radius: 15px;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .memorial-card-container {
+            max-width: 450px;
+            height: 260px;
+        }
+        
+        .memorial-card-title {
+            font-size: 20px;
+        }
+        
+        .memorial-card-subtitle {
+            font-size: 14px;
+        }
+        
+        .memorial-candle {
+            width: 30px;
+            height: 140px;
+        }
+        
+        .memorial-dedication {
+            font-size: 16px;
+        }
+        
+        .memorial-hebrew {
+            font-size: 14px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .memorial-card-container {
+            max-width: 320px;
+            height: 200px;
+        }
+        
+        .memorial-card-inner {
+            padding: 15px;
+            flex-direction: column;
+        }
+        
+        .memorial-card-content {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .memorial-candle-container {
+            width: 100%;
+            height: auto;
+        }
+        
+        .memorial-card-title {
+            font-size: 16px;
+        }
+        
+        .memorial-card-subtitle {
+            font-size: 12px;
+        }
+        
+        .memorial-candle {
+            width: 25px;
+            height: 120px;
+        }
+        
+        .memorial-dedication {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .memorial-hebrew {
+            font-size: 12px;
+        }
+    }
+
     </style>
 </head>
 <body class="bg-gray-50 scroll-smooth">
@@ -50,7 +464,7 @@
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
-                <span class="text-xl font-semibold text-blue-900">YC Learning Program</span>
+                <span class="text-xl font-bold text-blue-900">YC Learning Program</span>
             </div>
             <div class="hidden md:flex space-x-6">
                 <a href="#about" class="text-gray-700 hover:text-blue-800 transition">About</a>
@@ -243,6 +657,62 @@
         </div>
     </section>
 
+    <!-- Memorial Card Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-2xl md:text-4xl font-bold text-blue-900 mb-4">Honor Your Loved Ones</h2>
+                <p class="text-lg text-gray-700">Sponsor Torah learning to create an eternal merit for those you cherish. Talmidim learn with your beloved one in mind.</p>
+            </div>
+            
+            <div class="memorial-card-container" id="memorialCardContainer">
+                <div class="memorial-card" id="memorialCard">
+                    <div class="memorial-card-shine" id="memorialCardShine"></div>
+                    <div class="memorial-card-border"></div>
+                    <div class="memorial-holographic-effect" id="memorialHolographicEffect"></div>
+                    
+                    <div class="memorial-card-inner">
+                        <div class="memorial-card-content">
+                            <div class="memorial-card-header">
+                                <h1 class="memorial-card-title">Learning Sponsorship</h1>
+                                <p class="memorial-card-subtitle">In Memory Of</p>
+                            </div>
+                            
+                            <div class="memorial-dedication">
+                                Le'iluei Nishmat<br>
+                                Moshe ben Ploni haKohen
+                            </div>
+                            <div class="memorial-hebrew">
+                                לעילוי נשמת<br>
+                                משה בן פלוני הכהן
+                            </div>
+                        </div>
+                        
+                        <div class="memorial-candle-container">
+                            <div class="memorial-candle-wrapper">
+                                <div class="memorial-glow"></div>
+                                <div class="memorial-flame"></div>
+                                <div class="memorial-wick"></div>
+                                <div class="memorial-candle">
+                                    <div class="memorial-wax-drips">
+                                        <div class="memorial-wax-drip"></div>
+                                        <div class="memorial-wax-drip"></div>
+                                        <div class="memorial-wax-drip"></div>
+                                        <div class="memorial-wax-drip"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://form.jotform.com/251582409738061" class="bg-blue-900 hover:bg-blue-800 text-white px-8 py-3 rounded-md font-semibold transition">SPONSOR NOW</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Impact Section -->
     <section id="impact" class="py-16 md:py-20 bg-white">
         <div class="container mx-auto px-4">
@@ -268,7 +738,7 @@
                             </svg>
                             <div>
                                 <p class="font-semibold text-gray-800">Nourishing Body and Soul</p>
-                                <p class="text-gray-700">Provides meals and refreshments for our dedicated learners, allowing them to focus fully on their studies.</p>
+                                <p class="text-gray-700">Provides meals and refreshments for our dedicated learners, allowing them to enjoy and focus on their studies.</p>
                             </div>
                         </li>
                         <li class="flex items-start">
@@ -286,7 +756,7 @@
                             </svg>
                             <div>
                                 <p class="font-semibold text-gray-800">Special Learning Programs</p>
-                                <p class="text-gray-700">Supports dedicated learning sessions, siyumim (completion celebrations), and special events in honor of your loved ones.</p>
+                                <p class="text-gray-700">Supports dedicated learning sessions, and special learning in honor of your loved ones.</p>
                             </div>
                         </li>
                         <li class="flex items-start">
@@ -338,6 +808,8 @@
         </div>
     </section>
 
+
+
     <!-- Sponsor Section -->
     <section id="sponsor" class="py-16 md:py-20 bg-blue-900 text-white">
         <div class="container mx-auto px-4">
@@ -372,7 +844,7 @@
                     </ul>
                 </div>
                 
-                <div class="bg-white bg-opacity-10 rounded-lg p-6 md:p-8 backdrop-blur-sm border border-white border-opacity-20 hover:bg-opacity-15 transition transform scale-105 shadow-lg">
+                <div class="bg-white bg-opacity-10 rounded-lg p-6 md:p-8 backdrop-blur-sm border border-white border-opacity-20 hover:bg-opacity-15 transition transform shadow-lg">
                     <div class="bg-amber-600 text-white text-sm font-bold uppercase py-1 px-3 rounded-full inline-block mb-4">Most Popular</div>
                     <h3 class="text-xl md:text-2xl font-bold mb-2">Whole Day</h3>
                     <p class="text-2xl md:text-3xl font-bold text-amber-400 mb-6">R1800</p>
@@ -419,7 +891,7 @@
                             <svg class="h-5 w-5 text-amber-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                             </svg>
-                            <span>Speicial learning materials</span>
+                            <span>Special learning materials</span>
                         </li>
                         <li class="flex items-center">
                             <svg class="h-5 w-5 text-amber-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -585,6 +1057,205 @@
                     mobileMenu.style.display = 'none';
                 }
             });
+        });
+                // Memorial Card Interaction
+        const card = document.getElementById('memorialCard');
+        const cardContainer = document.getElementById('memorialCardContainer');
+        const cardShine = document.getElementById('memorialCardShine');
+        const holographicEffect = document.getElementById('memorialHolographicEffect');
+        
+        // Variables for tracking mouse/touch position
+        let rect, centerX, centerY;
+        let mouseX = 0, mouseY = 0;
+        let isTouch = false;
+        
+        // Update rectangle dimensions on resize
+        function updateRect() {
+            rect = cardContainer.getBoundingClientRect();
+            centerX = rect.left + rect.width / 2;
+            centerY = rect.top + rect.height / 2;
+        }
+        
+        // Initialize
+        updateRect();
+        window.addEventListener('resize', updateRect);
+        
+        // Mouse move handler
+        function handleMouseMove(e) {
+            if (isTouch) return; // Skip if touch is active
+            
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            updateCardTransform();
+        }
+        
+        // Touch handlers
+        function handleTouchStart(e) {
+            isTouch = true;
+            if (e.touches.length > 0) {
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+                updateCardTransform();
+            }
+        }
+        
+        function handleTouchMove(e) {
+            if (e.touches.length > 0) {
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+                updateCardTransform();
+            }
+        }
+        
+        function handleTouchEnd() {
+            // Reset card position gradually
+            setTimeout(() => {
+                isTouch = false;
+                card.style.transition = 'transform 0.5s ease-out';
+                card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                cardShine.style.opacity = '0';
+                holographicEffect.style.opacity = '0';
+                
+                // Remove transition after it completes
+                setTimeout(() => {
+                    card.style.transition = 'transform 0.05s ease-out';
+                }, 500);
+            }, 100);
+        }
+        
+        // Update card transform based on mouse/touch position
+        function updateCardTransform() {
+            // Calculate distance from center
+            const distX = mouseX - centerX;
+            const distY = mouseY - centerY;
+            
+            // Calculate rotation (max 15 degrees)
+            const rotateY = distX * 15 / (rect.width / 2);
+            const rotateX = -distY * 15 / (rect.height / 2);
+            
+            // Apply rotation
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            
+            // Calculate shine position (0 to 1)
+            const shineX = (mouseX - rect.left) / rect.width;
+            const shineY = (mouseY - rect.top) / rect.height;
+            
+            // Update shine effect
+            cardShine.style.opacity = '1';
+            cardShine.style.background = `radial-gradient(circle at ${shineX * 100}% ${shineY * 100}%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0) 60%)`;
+            
+            // Update holographic effect
+            holographicEffect.style.opacity = '1';
+            holographicEffect.style.transform = `translateX(${(shineX - 0.5) * 20}px) translateY(${(shineY - 0.5) * 20}px)`;
+            
+            // Calculate color based on angle
+            const hue = (Math.atan2(distY, distX) * 180 / Math.PI + 180) % 360;
+            const saturation = Math.min(100, Math.sqrt(distX * distX + distY * distY) / 5);
+            
+            // Apply holographic color effect
+            holographicEffect.style.background = `linear-gradient(135deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                hsla(${hue}, ${saturation}%, 70%, 0.1) 25%, 
+                hsla(${(hue + 30) % 360}, ${saturation}%, 80%, 0.15) 50%, 
+                hsla(${(hue + 60) % 360}, ${saturation}%, 70%, 0.1) 75%, 
+                rgba(255, 255, 255, 0) 100%)`;
+        }
+        
+        // Add event listeners
+        document.addEventListener('mousemove', handleMouseMove);
+        cardContainer.addEventListener('touchstart', handleTouchStart);
+        cardContainer.addEventListener('touchmove', handleTouchMove);
+        cardContainer.addEventListener('touchend', handleTouchEnd);
+        
+        // Device orientation for mobile
+        window.addEventListener('deviceorientation', function(e) {
+            if (isTouch) return; // Skip if touch is active
+            
+            // Only use orientation if we're on mobile and not actively touching
+            if (window.innerWidth <= 768) {
+                // Convert orientation data to rotation
+                // Beta is front-to-back tilt (-180 to 180)
+                // Gamma is left-to-right tilt (-90 to 90)
+                const beta = Math.min(Math.max(e.beta, -45), 45); // Limit tilt to -45 to 45 degrees
+                const gamma = Math.min(Math.max(e.gamma, -45), 45);
+                
+                // Apply rotation (scaled down for subtle effect)
+                const rotateX = -beta * 0.3;
+                const rotateY = gamma * 0.3;
+                
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                
+                // Calculate shine position based on orientation
+                const shineX = (gamma + 45) / 90;
+                const shineY = (beta + 45) / 90;
+                
+                // Update shine effect
+                cardShine.style.opacity = '1';
+                cardShine.style.background = `radial-gradient(circle at ${shineX * 100}% ${shineY * 100}%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0) 60%)`;
+                
+                // Update holographic effect
+                holographicEffect.style.opacity = '1';
+                holographicEffect.style.transform = `translateX(${(shineX - 0.5) * 20}px) translateY(${(shineY - 0.5) * 20}px)`;
+                
+                // Calculate color based on orientation
+                const hue = (Math.atan2(beta, gamma) * 180 / Math.PI + 180) % 360;
+                const saturation = Math.min(100, Math.sqrt(beta * beta + gamma * gamma));
+                
+                // Apply holographic color effect
+                holographicEffect.style.background = `linear-gradient(135deg, 
+                    rgba(255, 255, 255, 0) 0%, 
+                    hsla(${hue}, ${saturation}%, 70%, 0.1) 25%, 
+                    hsla(${(hue + 30) % 360}, ${saturation}%, 80%, 0.15) 50%, 
+                    hsla(${(hue + 60) % 360}, ${saturation}%, 70%, 0.1) 75%, 
+                    rgba(255, 255, 255, 0) 100%)`;
+            }
+        });
+        
+        // Add subtle animation when not interacting
+        let animationFrame;
+        let angle = 0;
+        
+        function subtleAnimation() {
+            if (!isTouch && (mouseX === 0 && mouseY === 0)) {
+                angle += 0.01;
+                
+                // Create subtle floating effect
+                const rotateX = Math.sin(angle) * 2;
+                const rotateY = Math.cos(angle) * 2;
+                
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                
+                // Subtle shine effect
+                const shineX = (Math.cos(angle) + 1) / 2;
+                const shineY = (Math.sin(angle) + 1) / 2;
+                
+                cardShine.style.opacity = '0.5';
+                cardShine.style.background = `radial-gradient(circle at ${shineX * 100}% ${shineY * 100}%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0) 60%)`;
+                
+                // Subtle holographic effect
+                holographicEffect.style.opacity = '0.3';
+                holographicEffect.style.transform = `translateX(${(shineX - 0.5) * 10}px) translateY(${(shineY - 0.5) * 10}px)`;
+                
+                // Subtle color shift
+                const hue = (angle * 180 / Math.PI) % 360;
+                
+                holographicEffect.style.background = `linear-gradient(135deg, 
+                    rgba(255, 255, 255, 0) 0%, 
+                    hsla(${hue}, 70%, 70%, 0.05) 25%, 
+                    hsla(${(hue + 30) % 360}, 70%, 80%, 0.1) 50%, 
+                    hsla(${(hue + 60) % 360}, 70%, 70%, 0.05) 75%, 
+                    rgba(255, 255, 255, 0) 100%)`;
+            }
+            
+            animationFrame = requestAnimationFrame(subtleAnimation);
+        }
+        
+        // Start subtle animation
+        subtleAnimation();
+        
+        // Clean up animation on page unload
+        window.addEventListener('beforeunload', function() {
+            cancelAnimationFrame(animationFrame);
         });
     </script>
 </body>
