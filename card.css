@@ -75,5 +75,11 @@
   }
   .memorial-hebrew {
     font-size: 12px;
+
   }
+  @media (max-width: 480px) {
+    .memorial-candle-container {
+        display: none;
+    }
+}
 }
