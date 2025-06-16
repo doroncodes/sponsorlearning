@@ -1,485 +1,79 @@
- .memorial-card-container {
-        width: 100%;
-        max-width: 600px;
-        height: 350px;
-        perspective: 1500px;
-        margin: 0 auto;
-        position: relative;
-        touch-action: none;
-    }
-    
-    .memorial-card {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        transform-style: preserve-3d;
-        border-radius: 15px;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-        transition: transform 0.05s ease-out;
-        background-color: #000;
-        overflow: hidden;
-    }
-    
-    .memorial-card-inner {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 30px;
-        border-radius: 15px;
-        background: #000;
-        overflow: hidden;
-        box-sizing: border-box;
-    }
-    
-    .memorial-card-shine {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 15px;
-        background: linear-gradient(135deg, 
-            rgba(255, 255, 255, 0) 0%, 
-            rgba(255, 255, 255, 0.05) 40%, 
-            rgba(255, 255, 255, 0.1) 60%, 
-            rgba(255, 255, 255, 0) 100%);
-        opacity: 0;
-        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-        pointer-events: none;
-        z-index: 3;
-    }
-    
-    .memorial-card-border {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        z-index: 2;
-    }
-    
-    .memorial-card-content {
-        position: relative;
-        z-index: 1;
-        width: 60%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-    }
-    
-    .memorial-card-header {
-        margin-bottom: 20px;
-        position: relative;
-    }
-    
-    .memorial-card-title {
-        font-family: 'Playfair Display', serif;
-        font-weight: 700;
-        font-size: 24px;
-        color: #fff;
-        margin-bottom: 10px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        position: relative;
-    }
-    
-    .memorial-card-subtitle {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
-        font-size: 16px;
-        color: #ccc;
-        margin-bottom: 5px;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    }
-    
-    .memorial-candle-container {
-        width: 35%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
-    
-    .memorial-candle-wrapper {
-        position: relative;
-        width: 100%;
-        height: 200px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .memorial-candle {
-        position: relative;
-        width: 40px;
-        height: 180px;
-        background: linear-gradient(to right, 
-            rgba(255, 253, 245, 0.9), 
-            rgba(255, 255, 255, 1), 
-            rgba(255, 253, 245, 0.9));
-        border-radius: 5px 5px 0 0;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        overflow: hidden;
-    }
-    
-    .memorial-candle::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to right, 
-            rgba(255, 255, 255, 0.1), 
-            rgba(255, 255, 255, 0.3), 
-            rgba(255, 255, 255, 0.1));
-        border-radius: 5px 5px 0 0;
-    }
-    
-    .memorial-candle::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 30px;
-        background: linear-gradient(to bottom, 
-            rgba(255, 253, 245, 0.9), 
-            rgba(255, 240, 220, 1));
-        border-radius: 0 0 5px 5px;
-    }
-    
-    .memorial-wax-drips {
-        position: absolute;
-        top: 10px;
-        left: -5px;
-        width: 50px;
-        height: 100%;
-        pointer-events: none;
-    }
-    
-    .memorial-wax-drip {
-        position: absolute;
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 50% 50% 0 50%;
-        transform: rotate(15deg);
-    }
-    
-    .memorial-wax-drip:nth-child(1) {
-        top: 20px;
-        left: 2px;
-        width: 12px;
-        height: 25px;
-    }
-    
-    .memorial-wax-drip:nth-child(2) {
-        top: 60px;
-        left: -2px;
-        width: 10px;
-        height: 30px;
-        transform: rotate(25deg);
-    }
-    
-    .memorial-wax-drip:nth-child(3) {
-        top: 100px;
-        left: 0px;
-        width: 15px;
-        height: 20px;
-        transform: rotate(10deg);
-    }
-    
-    .memorial-wax-drip:nth-child(4) {
-        top: 140px;
-        left: -3px;
-        width: 12px;
-        height: 28px;
-        transform: rotate(20deg);
-    }
-    
-    .memorial-wick {
-        position: absolute;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 3px;
-        height: 15px;
-        background-color: #333;
-        border-radius: 2px;
-        z-index: 1;
-    }
-    
-    .memorial-flame {
-        position: absolute;
-        top: -35px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 20px;
-        height: 35px;
-        background: radial-gradient(ellipse at center, 
-            rgba(255, 255, 255, 0.9) 0%, 
-            rgba(255, 204, 0, 0.9) 30%, 
-            rgba(255, 153, 0, 0.9) 60%, 
-            rgba(255, 102, 0, 0.7) 90%);
-        border-radius: 50% 50% 20% 20% / 40% 40% 60% 60%;
-        box-shadow: 0 0 20px rgba(255, 153, 0, 0.8),
-                    0 0 40px rgba(255, 102, 0, 0.6);
-        animation: memorial-flicker 3s infinite alternate;
-        z-index: 2;
-    }
-    
-    .memorial-glow {
-        position: absolute;
-        top: -45px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100px;
-        height: 100px;
-        background: radial-gradient(circle, 
-            rgba(255, 204, 0, 0.4) 0%, 
-            rgba(255, 153, 0, 0.2) 40%, 
-            rgba(255, 102, 0, 0.1) 60%, 
-            rgba(0, 0, 0, 0) 80%);
-        border-radius: 50%;
-        animation: memorial-glow 3s infinite alternate;
-        z-index: 1;
-    }
-    
-    .memorial-dedication {
-        font-family: 'Playfair Display', serif;
-        font-weight: 500;
-        font-size: 20px;
-        color: #fff;
-        margin-top: 20px;
-        line-height: 1.6;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    
-    .memorial-hebrew {
-        font-family: 'Times New Roman', serif;
-        font-size: 18px;
-        color: #e6c200;
-        margin-top: 10px;
-        direction: rtl;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    }
-    
-    @keyframes memorial-flicker {
-        0%, 100% {
-            transform: translateX(-50%) scale(1);
-            opacity: 1;
-        }
-        10% {
-            transform: translateX(-51%) scale(1.05);
-            opacity: 0.9;
-        }
-        20% {
-            transform: translateX(-49%) scale(0.95);
-            opacity: 1;
-        }
-        30% {
-            transform: translateX(-50%) scale(1.02);
-            opacity: 0.95;
-        }
-        50% {
-            transform: translateX(-51%) scale(0.98);
-            opacity: 1;
-        }
-        70% {
-            transform: translateX(-49%) scale(1.03);
-            opacity: 0.9;
-        }
-        80% {
-            transform: translateX(-50%) scale(0.97);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes memorial-glow {
-        0%, 100% {
-            transform: translateX(-50%) scale(1);
-            opacity: 0.5;
-        }
-        50% {
-            transform: translateX(-50%) scale(1.1);
-            opacity: 0.7;
-        }
-    }
-    
-    /* Holographic effect */
-    .memorial-holographic-effect {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, 
-            rgba(255, 255, 255, 0) 0%, 
-            rgba(255, 255, 255, 0.05) 25%, 
-            rgba(255, 255, 255, 0.1) 50%, 
-            rgba(255, 255, 255, 0.05) 75%, 
-            rgba(255, 255, 255, 0) 100%);
-        mix-blend-mode: overlay;
-        opacity: 0;
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        pointer-events: none;
-        z-index: 4;
-        border-radius: 15px;
-    }
-    
-    /* Responsive styles */
-    @media (max-width: 768px) {
-        .memorial-card-container {
-            max-width: 450px;
-            height: 260px;
-        }
-        
-        .memorial-card-title {
-            font-size: 20px;
-        }
-        
-        .memorial-card-subtitle {
-            font-size: 14px;
-        }
-        
-        .memorial-candle {
-            width: 30px;
-            height: 140px;
-        }
-        
-        .memorial-dedication {
-            font-size: 16px;
-        }
-        
-        .memorial-hebrew {
-            font-size: 14px;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .memorial-wrapper {
-            padding: 20px 10px;
-        }
-        
-        .memorial-card-container {
-            max-width: 320px;
-            height: 200px;
-        }
-        
-        .memorial-card-inner {
-            padding: 15px;
-        }
-        
-        .memorial-card-title {
-            font-size: 16px;
-        }
-        
-        .memorial-card-subtitle {
-            font-size: 12px;
-        }
-        
-        .memorial-candle {
-            width: 25px;
-            height: 120px;
-        }
-        
-        .memorial-dedication {
-            font-size: 14px;
-            margin-top: 10px;
-        }
-        
-        .memorial-hebrew {
-            font-size: 12px;
-        }
-    }
+/* Correct: separate media queries */
+
 @media (max-width: 768px) {
-    .memorial-card-inner {
-        flex-direction: row;
-        padding: 20px;
-    }
-
-    .memorial-card-content {
-        width: 65%;
-    }
-
-    .memorial-candle-container {
-        width: 35%;
-    }
-
-    .memorial-candle-wrapper {
-        height: 150px;
-    }
-
-    .memorial-candle {
-        width: 30px;
-        height: 130px;
-    }
-
-    .memorial-wick {
-        height: 10px;
-    }
-
-    .memorial-flame {
-        width: 16px;
-        height: 28px;
-    }
-
-    .memorial-glow {
-        width: 80px;
-        height: 80px;
-    }
-
-    .memorial-dedication {
-        font-size: 16px;
-    }
-
-    .memorial-hebrew {
-        font-size: 14px;
-    }
-    @media (max-width: 480px) {
-    .memorial-card-inner {
-        padding: 15px;
-    }
-
-    .memorial-card-content {
-        width: 60%;
-    }
-
-    .memorial-candle-container {
-        width: 40%;
-    }
-
-    .memorial-candle-wrapper {
-        height: 120px;
-    }
-
-    .memorial-candle {
-        width: 24px;
-        height: 100px;
-    }
-
-    .memorial-flame {
-        width: 12px;
-        height: 22px;
-    }
-
-    .memorial-glow {
-        width: 60px;
-        height: 60px;
-    }
-
-    .memorial-dedication {
-        font-size: 14px;
-    }
-
-    .memorial-hebrew {
-        font-size: 12px;
-    }
+  .memorial-card-container {
+    max-width: 450px;
+    height: 260px;
+  }
+  .memorial-card-inner {
+    flex-direction: row;
+    padding: 20px;
+  }
+  .memorial-card-content {
+    width: 65%;
+  }
+  .memorial-candle-container {
+    width: 35%;
+  }
+  .memorial-candle-wrapper {
+    height: 150px;
+  }
+  .memorial-candle {
+    width: 30px;
+    height: 130px;
+  }
+  .memorial-wick {
+    height: 10px;
+  }
+  .memorial-flame {
+    width: 16px;
+    height: 28px;
+  }
+  .memorial-glow {
+    width: 80px;
+    height: 80px;
+  }
+  .memorial-dedication {
+    font-size: 16px;
+  }
+  .memorial-hebrew {
+    font-size: 14px;
+  }
 }
+
+@media (max-width: 480px) {
+  .memorial-wrapper {
+    padding: 20px 10px;
+  }
+  .memorial-card-container {
+    max-width: 320px;
+    height: 200px;
+  }
+  .memorial-card-inner {
+    padding: 15px;
+  }
+  .memorial-card-content {
+    width: 60%;
+  }
+  .memorial-candle-container {
+    width: 40%;
+  }
+  .memorial-candle-wrapper {
+    height: 120px;
+  }
+  .memorial-candle {
+    width: 24px;
+    height: 100px;
+  }
+  .memorial-flame {
+    width: 12px;
+    height: 22px;
+  }
+  .memorial-dedication {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .memorial-hebrew {
+    font-size: 12px;
+  }
 }
