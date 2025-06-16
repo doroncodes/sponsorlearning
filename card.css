@@ -1,3 +1,13 @@
+@media (max-width: 600px) {
+  .candle {
+    top: -40px;
+    width: 40px;
+  }
+
+  .memorial-card-container {
+    padding-top: 60px;
+  }
+}
 .memorial-card-container {
     height: auto; /* Let it grow based on content */
     min-height: 350px; /* Optional baseline */
