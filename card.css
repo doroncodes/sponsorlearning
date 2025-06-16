@@ -1,3 +1,21 @@
+.text-and-candle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap; /* ensure stacking on small screens */
+}
+
+.text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.candle {
+  width: 60px;
+  height: auto;
+}
 .memorial-card {
   margin-top: 80px; /* increase spacing from top */
   position: relative;
