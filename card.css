@@ -1,3 +1,8 @@
+.memorial-card {
+  margin-top: 80px; /* increase spacing from top */
+  position: relative;
+  ...
+}
 @media (max-width: 600px) {
   .candle {
     top: -40px;
