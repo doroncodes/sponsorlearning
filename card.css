@@ -1,4 +1,35 @@
+.memorial-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* allows wrapping on small screens */
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
 
+/* Stack text and image vertically on mobile */
+@media (max-width: 600px) {
+  .memorial-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .memorial-text, .candle-container {
+    width: 100%;
+    text-align: center;
+  }
+
+  .candle-container img {
+    max-height: 150px; /* adjust based on your image */
+    height: auto;
+  }
+}
 .memorial-card {
   margin-top: 80px; /* increase spacing from top */
   position: relative;
